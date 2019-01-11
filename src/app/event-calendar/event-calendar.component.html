@@ -1,0 +1,86 @@
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+<div class="row controls blue-grey darken-3">
+  <div class="col s6">
+    <form [formGroup]="SelectedHours">
+      <div class="input-field col s6">
+        <select class="browser-default" formControlName="startTime">
+          <option value="">Choose Start Time</option>
+          <option *ngFor=" let option of Value ; let i = index " [value]="option"> {{(option % 1 == 0 ) ? option :
+            (option-0.5)+':30'}}</option>
+        </select>
+        <select class="browser-default" formControlName="endTime">
+          <option value="">Choose End Time</option>
+          <option *ngFor="  let option of Value" [value]="option  "> {{(option % 1 == 0 ) ? option :
+            (option-0.5)+':30'}}</option>
+        </select>
+      </div>
+    </form>
+    <div class="input-field col s6">
+      <a class="waves-effect waves-light btn blue-grey ligthen-1 addevent" (click)="addEvent()"><p>Add Event</p> </a>
+    </div>
+  </div>
+</div>
+
+<div class="row ">
+  <div class="col s4 ">
+    <div class="row Header">
+      <div class="col s1 blue-grey darken-3 white-text hourHeader hourText">.</div>
+      <div class="col s8 blue-grey darken-3 white-text center eventDisplayHeader">Friday
+        <p class="right no-spacing"> {{this.atualDay.getDate()}}</p>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s1 lines">
+        <ul>
+          <li *ngFor="let hour of Hours" class="hours center">
+            <p>{{ hour }}</p>
+          </li>
+        </ul>
+      </div>
+      <div class="col s11 eventDisplay" id="eventDisplay"> </div>
+    </div>
+  </div>
+  <div class="col s8 center">
+    <a class="waves-effect waves-light btn blue-grey darken-3" routerLink="/default">
+      <p>Default Case</p>
+    </a>
+    <a class="waves-effect waves-light btn blue-grey darken-3" routerLink="/case1">
+      <p>Case 1</p>
+    </a>
+    <a class="waves-effect waves-light btn blue-grey darken-3" routerLink="/case2">
+      <p>Case 2</p>
+    </a>
+    <a class="waves-effect waves-light btn blue-grey darken-3" routerLink="/case3">
+      <p>Case 3</p>
+    </a>
+    <a class="waves-effect waves-light btn blue-grey darken-3" routerLink="/case4">
+      <p>Case 4</p>
+    </a>
+    <a class="waves-effect waves-light btn blue-grey darken-3" routerLink="/case5">
+      <p>Case 5</p>
+    </a>
+    <div class="row center">
+      <div class="col s2">
+          <h5>-> </h5>
+        <h5>Look some  cases </h5>
+        <h5>or <br><br>Try it yourself </h5>
+        <h5><- </h5>
+
+        <p>to try it your self just choose the Start and End of event the event and click to ADD button</p>
+
+      </div>
+      <div class="col s6 offset-s2 ">
+        <router-outlet></router-outlet>
+
+      </div>
+  </div>
+
+</div>
+</div>

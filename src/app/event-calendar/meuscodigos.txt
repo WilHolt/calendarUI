@@ -1,0 +1,133 @@
+else{
+          newEvent.setAttribute('id', "event"+(eventCount))
+          newEvent.style.width= nWidth+"px";
+          newEvent.style.height= size+"px";
+          newEvent.style.marginTop = top+"px";
+          newEvent.style.background = color;
+          newEvent.style.zIndex =' 9999'
+          newEvent.style.position =' absolute'
+          eventCount++
+    
+        }
+
+
+        let index3 = 0
+          while( index3 < this.Events.length )
+          {
+            if(arrayequal.pop().startTime == this.Events[index3].startTime){
+                let oldEvent2 = document.getElementById("event"+(index3))
+                oldEvent2.style.width  = nWidth+"px"
+                oldEvent.style.marginLeft = ((nWidth * this.Events.length))-nWidth +"px  "  
+
+              index3++
+            }
+          }
+          ==============
+           console.log('antes do if' )
+        console.log(arrayequal.pop())
+        if(arrayequal.pop() == this.Events[index]){
+          console.log('entrou')
+          newEvent.setAttribute('id', "event"+(eventCount))
+          console.log(eventCount+' 2 event count number')
+          newEvent.style.width= nWidth+"px";
+          newEvent.style.height= size+"px";
+          newEvent.style.marginTop = top+"px";
+          newEvent.style.marginLeft = ((nWidth * this.Events.length)/2) +"px"
+          newEvent.style.background = color
+          newEvent.style.position =' absolute'
+          newEvent.style.zIndex =' 9999'
+          //change width of others events in same hour
+          let oldEvent = document.getElementById("event"+(index ))
+          oldEvent.style.width  = nWidth+"px"
+          if(index > 1){
+          oldEvent.style.marginLeft = ((nWidth * this.Events.length))-nWidth +"px"  
+          }
+          eventCount++
+
+        }
+        index++
+        ==================================================================================
+       
+      let arrayequal: Array<Event> = [];
+      let indexEquals = 0;
+      console.log('Tamanho do events: '+this.Events.length)
+      console.log('Evento Atual: '+atualEvent)
+      while(indexEquals < this.Events.length){
+        if(atualEvent.startTime == (this.Events[index].startTime)){
+          arrayequal.push(this.Events[indexEquals]);
+        }
+        indexEquals++
+      }
+      while(index < this.Events.length){
+        if(arrayequal[arrayequal.length-1] == this.Events[index]){
+          console.log('deu match: '+this.Events[index].length)
+          console.log('entrou')
+          newEvent.setAttribute('id', "event"+(this.counter))
+          console.log(eventCount+' 2 event count number')
+          newEvent.style.width= nWidth+"px";
+          newEvent.style.height= size+"px";
+          newEvent.style.marginTop = (top-15)+"px";
+          newEvent.style.marginLeft = ((nWidth * this.Events.length)/2) +"px"
+          newEvent.style.background = color
+          newEvent.style.position =' absolute'
+          newEvent.style.zIndex =' 9999'
+          //change width of others events in same hour
+          this.counter+= 1;
+ 
+        }
+        let oldEvent = document.getElementById("event"+(index))
+        //let oldEventProto = this[]
+        oldEvent.style.width  = nWidth+"px"
+        if(index > 1 ){
+        let indexToLength= 1;
+          while(indexToLength<= arrayequal.length){
+            if(this.Events[index] == arrayequal[indexEquals]){
+              oldEvent.style.marginLeft = ((nWidth * indexEquals))-nWidth +"px"  
+            }
+            indexEquals++
+          }
+          }
+        index++;
+      }
+
+      let arrayequal: Array<Event> = [];
+      let indexEquals = 0;
+      console.log('Tamanho do events: '+this.Events.length)
+      console.log('Evento Atual: '+atualEvent)
+      while(indexEquals < this.Events.length){
+        if(atualEvent.startTime == (this.Events[index].startTime)){
+          arrayequal.push(this.Events[indexEquals]);
+        }
+        indexEquals++
+      }
+      while(index < this.Events.length){
+        if(arrayequal[arrayequal.length-1] == this.Events[index]){
+          console.log('deu match: '+this.Events[index].length)
+          console.log('entrou')
+          newEvent.setAttribute('id', "event"+(this.counter))
+          console.log(eventCount+' 2 event count number')
+          newEvent.style.width= nWidth+"px";
+          newEvent.style.height= size+"px";
+          newEvent.style.marginTop = (top-15)+"px";
+          newEvent.style.marginLeft = ((nWidth * this.Events.length)/2) +"px"
+          newEvent.style.background = color
+          newEvent.style.position =' absolute'
+          newEvent.style.zIndex =' 9999'
+          //change width of others events in same hour
+          this.counter+= 1;
+ 
+        }
+        let oldEvent = document.getElementById("event"+(index))
+        //let oldEventProto = this[]
+        oldEvent.style.width  = nWidth+"px"
+        if(index > 1 ){
+        let indexToLength= 1;
+          while(indexToLength<= arrayequal.length){
+            if(this.Events[index] == arrayequal[indexEquals]){
+              oldEvent.style.marginLeft = ((nWidth * indexEquals))-nWidth +"px"  
+            }
+            indexEquals++
+          }
+          }
+        index++;
+      }

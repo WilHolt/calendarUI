@@ -1,0 +1,77 @@
+/*================= DISPLAY STYLE ================*/
+
+.container{
+    display: flex;
+    justify-items: center;
+}
+.eventDisplay{
+    width: 288px !important;
+    background: rgba(153,204,255,0.1);
+    height:1340px;;
+    padding: 0 !important;
+    border:1px solid #666666;
+    border-top:none;
+
+}
+
+.hours{
+    color: #666666;
+    font-size: 0.8rem;
+    
+}
+li{
+    margin-left:-12px!important;
+    text-align: left !important;
+    padding:6px;
+    padding-right: 318px;
+    border-top: 1px solid rgba(102,102,102,0.4) !important;
+
+}
+/*================= HEADER STYLE ================*/
+
+.eventDisplayHeader{
+    width: 288px !important;
+    padding: 5px!important;
+
+}
+.hourHeader{
+    padding: 5px!important;
+
+}
+.Header{
+    margin-top: 10px;
+
+}
+
+
+/*================= UTILS ================*/
+.row{
+    margin: 0;
+}
+.padding{ 
+    padding: 44px;
+    z-index: -999;
+}
+.no-spacing{
+    margin:0;
+    padding: 0;
+}
+.hourText{
+    color: #37474f !important;
+}
+.btn{
+    padding: 5px;
+    font-size: 0.7rem;
+    border:none;
+    margin-top:-5px;
+    box-shadow: none;
+}
+.btn p{
+    padding:0;
+    margin:0;
+    margin-top:-5px;
+}
+
+.addevent{
+    margin-top:20px;
+}
