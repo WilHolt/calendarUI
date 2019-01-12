@@ -1,34 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms'
-
-// @@@ IMPORTANT
-
-/**
- * THE HOUR = 22 PIXELS
- * THE HALF HOUR = 11 PIXELS
- * EVENT LENGTH = 22px * (START - END)
- * EVENT WIDTH = 288 / EVENT ARRAY SIZE 
- */
-/**
- * ======================RULES====================
- * if they start at the same time the first element will be at front
- * if the next event start at the end so he will get the length of the event above to be his start point
- * in case of the same startTime the margin left need to be equals 96 * index  
- * 
- * ======================END OF RULES ============
- */
-
-class Event {
-  eventId?: any;
-  startTime: any;
-  EndTime: any;
-  length: any;
-  width?: any;
-}
-interface Option{
-  value:any;
-  valueDisplay:any;
-}
+import { Event }  from '../_models/event'
+ 
 
 
 @Component({
@@ -103,12 +76,12 @@ export class EventCalendarComponent implements OnInit {
     this.generateOptions();
 
   }
-  generateHoursDisplay(){
+  generateHoursDisplay() {
     let index = 1;
     let number: any;
 
     while (index <= 24) {
-      number = index+':00'
+      number = index + ':00'
       if (index == 24) {
         number = '00:00'
       }
@@ -119,7 +92,7 @@ export class EventCalendarComponent implements OnInit {
 
 
   }
-  generateOptions(){
+  generateOptions() {
     let index = 1;
     let number;
     while (index <= 24) {
@@ -139,12 +112,8 @@ export class EventCalendarComponent implements OnInit {
     let eventsLength = this.Events.length
     let arrayequal: Array<Event> = [];
     let arrayequal2: Array<Event> = [];
-
-
     let nWidth = 288;
     let margins = 0;
-
-    var eventCount = 0;
     function getRandomInt(min, max) {
       min = Math.ceil(min);
       max = Math.floor(max);
@@ -215,33 +184,26 @@ export class EventCalendarComponent implements OnInit {
     let display = document.getElementById('eventDisplay')
     let newEvent = document.createElement('div')
     let atualEvent = this.Events[this.Events.length - 1]
-    console.log('o evento atual: ' + atualEvent.eventId)
+
 
 
     display.appendChild(newEvent)
-    console.log('criado')
-    console.log(this.Events.length)
 
 
-    console.log('array equal antes : ' + arrayequal.length)
+
     while (indexEquals < this.Events.length) {
       if (atualEvent.startTime == (this.Events[indexEquals].startTime)) {
-        console.log('entrou no 1')
         arrayequal.push(this.Events[indexEquals]);
       } else if (atualEvent.startTime > (this.Events[indexEquals].startTime) &&
         atualEvent.startTime < (this.Events[indexEquals].EndTime)) {
-        console.log('entrou aqui ')
-        console.log('id que entrou : ' + this.Events[indexEquals].eventId)
         arrayequal2.push(this.Events[indexEquals]);
       } else if (atualEvent.startTime < this.Events[indexEquals].startTime
         && atualEvent.EndTime > this.Events[indexEquals].startTime) {
-        console.log('case 3')
         arrayequal.push(this.Events[indexEquals]);
 
       }
       indexEquals++
     }
-    console.log(" array2 equal depois:" + arrayequal.length)
     arrayequal.sort(function (a, b) {
       return (a.length < b.length) ? 1 : ((a.length > b.length) ? -1 : 0);
     })
@@ -252,16 +214,14 @@ export class EventCalendarComponent implements OnInit {
     if (arrayequal.length > 0) {
       while (indexTotal < this.Events.length) {
         if (arrayequal.length > arrayequal2.length) {
-          console.log('entrou no normal start time igual')
           setEventDivEqual();
           this.counter++
           this.Events[indexTotal].width = nWidth
           while (indexRefresh < arrayequal.length) {
-            console.log('entrou no penultimo while')
             if (atualEvent.startTime == arrayequal[indexRefresh].startTime) {
               let oldEvent = document.getElementById("event" + (arrayequal[indexRefresh].eventId))
               oldEvent.style.width = nWidth + "px"
-              if (indexRefresh >2 ) {
+              if (indexRefresh > 2) {
                 oldEvent.style.marginLeft = ((nWidth * indexRefresh)) + "px"
                 if (indexRefresh > 1) {
                   let oldEvent = document.getElementById("event" + (arrayequal[indexRefresh].eventId))
@@ -276,49 +236,34 @@ export class EventCalendarComponent implements OnInit {
           indexRefresh = 0;
 
           while (indexRefresh < arrayequal.length) {
-            console.log('entrou no ultimo while')
             let oldEvent = document.getElementById("event" + (arrayequal[indexRefresh].eventId))
             oldEvent.style.marginLeft = ((nWidth * indexRefresh)) + "px"
             indexRefresh++
-
           }
 
         } else {
           if (arrayequal2.length > 0) {
-            console.log('entrou nessa seção')
-    
-              nWidth= 288 / (arrayequal2.length+1)
-              margins= arrayequal2.length * nWidth
-            
-
+            nWidth = 288 / (arrayequal2.length + 1)
+            margins = arrayequal2.length * nWidth
             setEventDivEqual2();
             this.counter++
             let oldEvent = document.getElementById("event" + (arrayequal2[0].eventId))
             oldEvent.style.width = nWidth + "px"
-
             while (indexRefresh < arrayequal2.length) {
               let oldEvent = document.getElementById("event" + (arrayequal2[indexRefresh].eventId))
               oldEvent.style.width = nWidth + "px"
-              if(indexRefresh > 0){
-              oldEvent.style.marginLeft=nWidth*arrayequal.length+'px'
+              if (indexRefresh > 0) {
+                oldEvent.style.marginLeft = nWidth * arrayequal.length + 'px'
 
               }
               indexRefresh++
-          }
-
-
-
+            }
           } else {
-            console.log('entrou aqui no diferente')
-            console.log('arrayequal 0 wiudth: ' + arrayequal2[0].width)
             nWidth = 288 - (arrayequal2[0].width * (arrayequal2.length))
-            console.log('this nwidth case : ' + nWidth)
             margins = arrayequal2[0].width * (arrayequal2.length)
-
             setEventDivEqual2();
             this.counter++
           }
-
         }
         indexTotal++
       }
